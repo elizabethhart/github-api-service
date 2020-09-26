@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Releases: React.FC = () => {
+    const { t } = useTranslation();
+
     useEffect(() => {
         getReleases();
     }, []);
@@ -9,7 +12,7 @@ const Releases: React.FC = () => {
         // TODO
     }
 
-    return <h1>Releases</h1>;
+    return <h1>{t("releases")}</h1>;
 };
 
 export default Releases;

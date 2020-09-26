@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ListGroup } from "react-bootstrap";
 import { getIssues } from "../../api/GitHubApi";
 
@@ -47,6 +48,7 @@ interface GitHubIssue {
 }
 
 const Issues: React.FC = () => {
+    const { t } = useTranslation();
     const [issues, setIssues] = useState<GitHubIssue[]>([]);
 
     useEffect(() => {
@@ -63,7 +65,7 @@ const Issues: React.FC = () => {
 
     return (
         <>
-            <h1>Issues</h1>
+            <h1>{t("issues")}</h1>
             <ListGroup>
                 {issues.map((issue, index) => {
                     return <ListGroup.Item key={index}>{issue.title}</ListGroup.Item>;

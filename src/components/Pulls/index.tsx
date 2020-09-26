@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Pulls: React.FC = () => {
+    const { t } = useTranslation();
+
     useEffect(() => {
         getPulls();
     }, []);
@@ -9,7 +12,7 @@ const Pulls: React.FC = () => {
         // TODO
     }
 
-    return <h1>Pulls</h1>;
+    return <h1>{t("pulls")}</h1>;
 };
 
 export default Pulls;
