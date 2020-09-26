@@ -53,7 +53,7 @@ const Issues: React.FC = () => {
     }, []);
 
     function getReactIssues() {
-        getIssues("facebook", "react").then((response) => {
+        getIssues("facebook", "react", "all", "updated", "desc").then((response) => {
             if (response.data && response.data.length) {
                 setIssues(response.data);
             }

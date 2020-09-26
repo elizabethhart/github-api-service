@@ -1,23 +1,6 @@
-import axios, {AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const baseUrl = "https://api.github.com/repos";
-
-enum State {
-    "open",
-    "closed",
-    "all"
-}
-
-enum Sort {
-    "created",
-    "updated",
-    "comments"
-}
-
-enum Direction {
-    "asc",
-    "desc"
-}
 
 /**
  * Get issues from a specified GitHub repository
@@ -31,26 +14,18 @@ enum Direction {
 export const getIssues = async (
     org: string,
     repo: string,
-    state?: State,
-    sort?: Sort,
-    direction?: Direction
+    state?: "open" | "closed" | "all",
+    sort?: "created" | "updated" | "comments",
+    direction?: "asc" | "desc"
 ): Promise<AxiosResponse> => {
-    let requestUrl = `${baseUrl}/${org}/${repo}/issues`;
-
-    if (state) {
-        requestUrl += `?state=${state}`;
-    }
-
-    if (sort) {
-        requestUrl += `&sort=${sort}`;
-
-        if (direction) {
-            requestUrl += `&direction=${direction}`;
-        }
-    }
+    const params = {
+        state: state,
+        sort: sort,
+        direction: direction
+    };
 
     try {
-        const response = await axios.get(requestUrl);
+        const response = await axios.get(`${baseUrl}/${org}/${repo}/issues`, { params });
 
         return response;
     } catch (error) {
