@@ -9,7 +9,7 @@ const Releases: React.FC = () => {
         // TODO
     }
 
-    return <div>Releases</div>;
+    return <h1>Releases</h1>;
 };
 
 export default Releases;

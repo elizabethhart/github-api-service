@@ -9,7 +9,7 @@ const Pulls: React.FC = () => {
         // TODO
     }
 
-    return <div>Pulls</div>;
+    return <h1>Pulls</h1>;
 };
 
 export default Pulls;

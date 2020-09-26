@@ -63,7 +63,7 @@ const Issues: React.FC = () => {
 
     return (
         <>
-            <h2>Issues</h2>
+            <h1>Issues</h1>
             <ListGroup>
                 {issues.map((issue, index) => {
                     return <ListGroup.Item key={index}>{issue.title}</ListGroup.Item>;

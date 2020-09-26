@@ -9,7 +9,7 @@ const Contributors: React.FC = () => {
         // TODO
     }
 
-    return <div>Contributors</div>;
+    return <h1>Contributors</h1>;
 };
 
 export default Contributors;
