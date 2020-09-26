@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 
 const Contributors: React.FC = () => {
     useEffect(() => {
@@ -7,18 +6,10 @@ const Contributors: React.FC = () => {
     }, []);
 
     async function getContributors() {
-        try {
-            // fetch data from a url endpoint
-            const repoResponse = await axios.get(
-                "https://api.github.com/repos/facebook/react/contributors?sort=popularity&direciton=desc"
-            );
-            console.log("Contributors", repoResponse);
-        } catch (error) {
-            console.log(error); // catches both errors
-        }
+        // TODO
     }
 
-    return <div>Hello World</div>;
+    return <div>Contributors</div>;
 };
 
 export default Contributors;

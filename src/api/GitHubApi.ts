@@ -7,18 +7,20 @@ const baseUrl = "https://api.github.com/repos";
  *
  * @param {string} org The organization who owns the repository
  * @param {string} repo The repository name
- * @param {State} state Indicates the state of the issues to return
- * @param {Sort} sort What to sort results by
- * @param {Direction} direction The direction of the sort
+ * @param {string} state Indicates the state of the issues to return
+ * @param {string} sort What to sort results by
+ * @param {string} direction The direction of the sort
  */
 export const getIssues = async (
     org: string,
     repo: string,
+    perPage: number,
     state?: "open" | "closed" | "all",
     sort?: "created" | "updated" | "comments",
     direction?: "asc" | "desc"
 ): Promise<AxiosResponse> => {
     const params = {
+        per_page: perPage,
         state: state,
         sort: sort,
         direction: direction

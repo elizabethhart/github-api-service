@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 
 const Releases: React.FC = () => {
     useEffect(() => {
@@ -7,18 +6,10 @@ const Releases: React.FC = () => {
     }, []);
 
     async function getReleases() {
-        try {
-            // fetch data from a url endpoint
-            const repoResponse = await axios.get(
-                "https://api.github.com/repos/facebook/react/releases?sort=popularity&direciton=desc"
-            );
-            console.log("response", repoResponse);
-        } catch (error) {
-            console.log(error); // catches both errors
-        }
+        // TODO
     }
 
-    return <div>Hello World</div>;
+    return <div>Releases</div>;
 };
 
 export default Releases;

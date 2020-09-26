@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ListGroup } from "react-bootstrap";
 import { getIssues } from "../../api/GitHubApi";
 
 interface GitHubUser {
@@ -53,7 +54,7 @@ const Issues: React.FC = () => {
     }, []);
 
     function getReactIssues() {
-        getIssues("facebook", "react", "all", "updated", "desc").then((response) => {
+        getIssues("facebook", "react", 5, "all", "updated", "desc").then((response) => {
             if (response.data && response.data.length) {
                 setIssues(response.data);
             }
@@ -62,9 +63,12 @@ const Issues: React.FC = () => {
 
     return (
         <>
-            {issues.map((issue, index) => {
-                return <div key={index}>{issue.title}</div>;
-            })}
+            <h2>Issues</h2>
+            <ListGroup>
+                {issues.map((issue, index) => {
+                    return <ListGroup.Item key={index}>{issue.title}</ListGroup.Item>;
+                })}
+            </ListGroup>
         </>
     );
 };
