@@ -3,7 +3,8 @@ import axios, { AxiosResponse } from "axios";
 const baseUrl = "https://api.github.com";
 
 /**
- * Get a specified GitHub repository
+ * Search all GitHub repositories
+ * see: https://docs.github.com/en/free-pro-team@latest/rest/reference/search#search-repositories
  *
  * @param {string} org The organization who owns the repository
  * @param {string} repo The repository name
@@ -18,6 +19,7 @@ export const getRepositories = async (search: string): Promise<AxiosResponse> =>
 
         return response;
     } catch (error) {
+        // TODO: Display error notification to user
         console.log(error);
 
         return error;
@@ -26,6 +28,7 @@ export const getRepositories = async (search: string): Promise<AxiosResponse> =>
 
 /**
  * Get issues from a specified GitHub repository
+ * see: https://docs.github.com/en/free-pro-team@latest/rest/reference/issues#list-repository-issues
  *
  * @param {string} organization The organization who owns the repository
  * @param {string} repository The repository name
@@ -55,6 +58,7 @@ export const getIssues = async (
 
         return response;
     } catch (error) {
+        // TODO: Display error notification to user
         console.log(error);
 
         return error;

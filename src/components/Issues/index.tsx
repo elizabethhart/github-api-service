@@ -14,22 +14,21 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        if (repository) {
-            findIssues();
-        }
+        findIssues();
     }, [repository]);
 
     function findIssues() {
-        setIsLoading(true);
-        getIssues(repository.owner.login, repository.name, 5, "all", "updated", "desc").then(
-            (response) => {
-                if (response.data && response.data.length) {
-                    console.log(response.data);
-                    setIssues(response.data);
+        if (repository) {
+            setIsLoading(true);
+            getIssues(repository.owner.login, repository.name, 5, "all", "updated", "desc").then(
+                (response) => {
+                    if (response.data && response.data.length) {
+                        setIssues(response.data);
+                    }
+                    setIsLoading(false);
                 }
-                setIsLoading(false);
-            }
-        );
+            );
+        }
     }
 
     return (

@@ -2,10 +2,11 @@
     "contributors": "Bidragsgivare",
     "dashboard": "Webbplatsverktyg",
     "details": "Detaljer",
-    "recent-issues": "Recent Issues",
-    "open-issues": "open issues",
+    "recent-issues": "Nyligen Problem",
+    "open-issues": "Öppet Problem",
     "pulls": "Dra förfrågningar",
     "releases": "Släpp",
-    "search-repositories": "Search Repositories",
+    "search-repositories": "Sök Förvar",
+    "select": "Välj",
     "view-on-github": "View on GitHub"
 }
