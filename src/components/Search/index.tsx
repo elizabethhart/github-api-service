@@ -23,6 +23,7 @@ const Search: React.FC<SearchProps> = ({ repository, onRepositoryChange, clearSe
     function searchRepositories(searchString: string) {
         setIsLoading(true);
         getRepositories(searchString).then((response) => {
+            console.log("response", response);
             if (response.data && response.data.items && response.data.items.length) {
                 setRepositories(response.data.items);
             }

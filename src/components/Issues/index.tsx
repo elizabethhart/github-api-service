@@ -20,8 +20,9 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
     function findIssues() {
         if (repository) {
             setIsLoading(true);
-            getIssues(repository.owner.login, repository.name, 5, "all", "updated", "desc").then(
+            getIssues(repository.owner.login, repository.name, 100, "all", "updated", "desc").then(
                 (response) => {
+                    console.log("response", response);
                     if (response.data && response.data.length) {
                         setIssues(response.data);
                     }

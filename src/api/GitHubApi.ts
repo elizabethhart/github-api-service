@@ -6,8 +6,7 @@ const baseUrl = "https://api.github.com";
  * Search all GitHub repositories
  * see: https://docs.github.com/en/free-pro-team@latest/rest/reference/search#search-repositories
  *
- * @param {string} org The organization who owns the repository
- * @param {string} repo The repository name
+ * @param {string} search The query string
  */
 export const getRepositories = async (search: string): Promise<AxiosResponse> => {
     try {
@@ -15,7 +14,13 @@ export const getRepositories = async (search: string): Promise<AxiosResponse> =>
             q: search
         };
 
-        const response = await axios.get(`${baseUrl}/search/repositories`, { params });
+        const response = await axios.get(`${baseUrl}/search/repositories`, {
+            params
+            // Use github token to increase rate limits from 10 requests/min -> 30 requests/min
+            // headers: {
+            //     Authorization: `token ${token}`
+            // }
+        });
 
         return response;
     } catch (error) {
@@ -54,6 +59,10 @@ export const getIssues = async (
     try {
         const response = await axios.get(`${baseUrl}/repos/${organization}/${repository}/issues`, {
             params
+            // Use github token to increase rate limits from 60 requests/hr -> 5000 requests/hr
+            // headers: {
+            //     Authorization: `token ${token}`
+            // }
         });
 
         return response;
