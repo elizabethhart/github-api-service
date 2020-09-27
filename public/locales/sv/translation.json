@@ -1,10 +1,9 @@
 {
     "contributors": "Bidragsgivare",
     "dashboard": "Webbplatsverktyg",
-    "details": "Details",
+    "details": "Detaljer",
     "recent-issues": "Recent Issues",
     "open-issues": "open issues",
-    "organization": "organization",
     "pulls": "Dra förfrågningar",
     "releases": "Släpp",
     "search-repositories": "Search Repositories",
