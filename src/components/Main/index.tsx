@@ -1,29 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import Detail from "../Detail";
+import Search from "../Search";
 import Issues from "../Issues";
-import Releases from "../Releases";
-import Contributors from "../Contributors";
-import Pulls from "../Pulls";
+import { GitHubRepository } from "../../types";
 
 const Main: React.FC = () => {
+    const [repository, setRepository] = useState<GitHubRepository | null>(null);
+
     return (
         <Container>
-            <Row>
-                <Col>
-                    <Issues />
-                </Col>
-                <Col>
-                    <Releases />
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Contributors />
-                </Col>
-                <Col>
-                    <Pulls />
-                </Col>
-            </Row>
+            <Search
+                repository={repository}
+                onRepositoryChange={(repository: GitHubRepository) => setRepository(repository)}
+                clearSelection={() => setRepository(null)}
+            />
+            {repository && (
+                <Row>
+                    <Col>
+                        <Detail repository={repository} />
+                    </Col>
+                    <Col>
+                        <Issues repository={repository} />
+                    </Col>
+                </Row>
+            )}
         </Container>
     );
 };

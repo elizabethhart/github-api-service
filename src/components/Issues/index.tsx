@@ -2,73 +2,39 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ListGroup } from "react-bootstrap";
 import { getIssues } from "../../api/GitHubApi";
+import { GitHubIssue, GitHubRepository } from "../../types";
 
-interface GitHubUser {
-    id: number;
-    // populate type as needed
+interface IssuesProps {
+    repository: GitHubRepository | null;
 }
 
-interface PullRequest {
-    id: number;
-    // populate types as needed
-}
-
-interface Label {
-    id: number;
-    // populate types as needed
-}
-
-interface GitHubIssue {
-    active_lock_reason: null;
-    assignee: GitHubUser;
-    assignees: GitHubUser[];
-    author_association: string;
-    body: string;
-    closed_at: null;
-    comments: number;
-    comments_url: string;
-    created_at: string;
-    events_url: string;
-    html_url: string;
-    id: number;
-    labels: Label[];
-    labels_url: string;
-    locked: boolean;
-    milestone: null;
-    node_id: string;
-    number: number;
-    performed_via_github_app: null;
-    pull_request: PullRequest;
-    repository_url: string;
-    state: string;
-    title: string;
-    updated_at: string;
-    url: string;
-    user: GitHubUser;
-}
-
-const Issues: React.FC = () => {
+const Issues: React.FC<IssuesProps> = ({ repository }) => {
     const { t } = useTranslation();
     const [issues, setIssues] = useState<GitHubIssue[]>([]);
 
     useEffect(() => {
-        getReactIssues();
-    }, []);
-
-    function getReactIssues() {
-        getIssues("facebook", "react", 5, "all", "updated", "desc").then((response) => {
-            if (response.data && response.data.length) {
-                setIssues(response.data);
-            }
-        });
-    }
+        if (repository) {
+            getIssues(repository.owner.login, repository.name, 5, "all", "updated", "desc").then(
+                (response) => {
+                    if (response.data && response.data.length) {
+                        console.log(response.data);
+                        setIssues(response.data);
+                    }
+                }
+            );
+        }
+    }, [repository]);
 
     return (
         <>
-            <h1>{t("issues")}</h1>
+            <h1>{t("recent-issues")}</h1>
             <ListGroup>
                 {issues.map((issue, index) => {
-                    return <ListGroup.Item key={index}>{issue.title}</ListGroup.Item>;
+                    return (
+                        <ListGroup.Item key={index} onClick={() => window.open(issue.html_url)}>
+                            {issue.title}
+                        </ListGroup.Item>
+                    );
                 })}
             </ListGroup>
         </>

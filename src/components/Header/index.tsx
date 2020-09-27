@@ -5,6 +5,7 @@ import { Button, ButtonGroup, Navbar } from "react-bootstrap";
 
 const Header: React.FC = () => {
     const { t } = useTranslation();
+    const languages = ["en", "sv"];
 
     const changeLanguage = (lng: string) => {
         i18n.changeLanguage(lng);
@@ -12,11 +13,22 @@ const Header: React.FC = () => {
 
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#">React {t("dashboard")}</Navbar.Brand>
+            <Navbar.Brand href="#">GitHub {t("dashboard")}</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse className="justify-content-end">
                 <ButtonGroup>
-                    <Button onClick={() => changeLanguage("sv")}>sv</Button>
-                    <Button onClick={() => changeLanguage("en")}>en</Button>
+                    {languages.map((language, index) => {
+                        return (
+                            <Button
+                                className="language-btn"
+                                key={index}
+                                variant={i18n.language === language ? "light" : "dark"}
+                                onClick={() => changeLanguage(language)}
+                            >
+                                {language}
+                            </Button>
+                        );
+                    })}
                 </ButtonGroup>
             </Navbar.Collapse>
         </Navbar>

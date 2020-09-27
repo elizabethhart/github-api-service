@@ -1,7 +1,12 @@
 {
     "contributors": "Bidragsgivare",
     "dashboard": "Webbplatsverktyg",
-    "issues": "Problem",
+    "details": "Details",
+    "recent-issues": "Recent Issues",
+    "open-issues": "open issues",
+    "organization": "organization",
     "pulls": "Dra förfrågningar",
-    "releases": "Släpp"
+    "releases": "Släpp",
+    "search-repositories": "Search Repositories",
+    "view-on-github": "View on GitHub"
 }

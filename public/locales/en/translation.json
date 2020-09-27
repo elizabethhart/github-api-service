@@ -1,7 +1,12 @@
 {
-    "contributors": "contributors",
-    "dashboard": "dashboard",
-    "issues": "issues",
-    "pulls": "pulls",
-    "releases": "releases"
+    "contributors": "Contributors",
+    "dashboard": "Dashboard",
+    "details": "Details",
+    "recent-issues": "Recent Issues",
+    "open-issues": "open issues",
+    "organization": "organization",
+    "pulls": "Pulls",
+    "releases": "Releases",
+    "search-repositories": "Search Repositories",
+    "view-on-github": "View on GitHub"
 }

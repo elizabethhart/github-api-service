@@ -1,1 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
+
+.container {
+    padding: 50px;
+}
+
+.dropdown-menu {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.language-btn {
+    border: 1px solid black;
+}
+
+.input-group-append,
+.list-group-item {
+    cursor: pointer;
+}
