@@ -20,18 +20,22 @@ const Search: React.FC<SearchProps> = ({ repository, onRepositoryChange, clearSe
     useEffect(() => {
         const timeout = setTimeout(() => {
             if (searchString !== "") {
-                getRepositories(searchString).then((response) => {
-                    if (response.data && response.data.items && response.data.items.length) {
-                        setRepositories(response.data.items);
-                    }
-                });
+                searchRepositories();
             }
-        }, 500);
+        }, 300);
 
         return () => {
             clearTimeout(timeout);
         };
     }, [searchString]);
+
+    function searchRepositories() {
+        getRepositories(searchString).then((response) => {
+            if (response.data && response.data.items && response.data.items.length) {
+                setRepositories(response.data.items);
+            }
+        });
+    }
 
     return (
         <Jumbotron>

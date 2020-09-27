@@ -16,13 +16,11 @@ const Detail: React.FC<DetailProps> = ({ repository }) => {
             <Card style={{ width: "18rem" }}>
                 <Card.Body>
                     <Card.Title>{repository.name}</Card.Title>
+                    <Card.Text>{repository.description}</Card.Text>
                     <Card.Text>
-                        <p>{repository.description}</p>
-                        <p>
-                            {repository.open_issues_count} {t("open-issues")}
-                        </p>
+                        {repository.open_issues_count} {t("open-issues")}
                     </Card.Text>
-                    <Button variant="primary" onClick={() => window.open(repository.html_url)}>
+                    <Button variant="dark" onClick={() => window.open(repository.html_url)}>
                         {t("view-on-github")}
                     </Button>
                 </Card.Body>

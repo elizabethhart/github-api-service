@@ -14,16 +14,20 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
 
     useEffect(() => {
         if (repository) {
-            getIssues(repository.owner.login, repository.name, 5, "all", "updated", "desc").then(
-                (response) => {
-                    if (response.data && response.data.length) {
-                        console.log(response.data);
-                        setIssues(response.data);
-                    }
-                }
-            );
+            findIssues();
         }
     }, [repository]);
+
+    function findIssues() {
+        getIssues(repository.owner.login, repository.name, 5, "all", "updated", "desc").then(
+            (response) => {
+                if (response.data && response.data.length) {
+                    console.log(response.data);
+                    setIssues(response.data);
+                }
+            }
+        );
+    }
 
     return (
         <>
