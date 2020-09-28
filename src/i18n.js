@@ -10,6 +10,7 @@ i18n.use(Backend)
         lng: "en",
         fallbackLng: "en",
         debug: true,
+        // add to whitelist whenever new files are added to /public/locales
         whitelist: ["en", "sv"],
         interpolation: {
             escapeValue: false

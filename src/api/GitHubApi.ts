@@ -49,11 +49,15 @@ export const getIssues = async (
     sort?: "created" | "updated" | "comments",
     direction?: "asc" | "desc"
 ): Promise<AxiosResponse> => {
+    const today = new Date();
+    today.setMonth(today.getMonth() - 1);
+    const lastMonthString = today.toISOString();
     const params = {
         per_page: perPage,
         state: state,
         sort: sort,
-        direction: direction
+        direction: direction,
+        since: lastMonthString
     };
 
     try {

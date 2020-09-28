@@ -1,10 +1,11 @@
 interface GitHubOwner {
     login: string;
+    // populate types as needed
 }
 
 interface GitHubUser {
     id: number;
-    // populate type as needed
+    // populate types as needed
 }
 
 interface PullRequest {
@@ -14,6 +15,8 @@ interface PullRequest {
 
 interface Label {
     id: number;
+    name: string;
+    color: string;
     // populate types as needed
 }
 

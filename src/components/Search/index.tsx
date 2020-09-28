@@ -23,7 +23,6 @@ const Search: React.FC<SearchProps> = ({ repository, onRepositoryChange, clearSe
     function searchRepositories(searchString: string) {
         setIsLoading(true);
         getRepositories(searchString).then((response) => {
-            console.log("response", response);
             if (response.data && response.data.items && response.data.items.length) {
                 setRepositories(response.data.items);
             }
@@ -35,19 +34,24 @@ const Search: React.FC<SearchProps> = ({ repository, onRepositoryChange, clearSe
         <Jumbotron>
             <h1>{t("search-repositories")}</h1>
             <ItemSearch onInputChange={searchRepositories} clearSelection={clearSelection} />
-            {isLoading ? (
-                <Spinner animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </Spinner>
-            ) : (
-                repositories.length > 0 && (
-                    <ItemSelect
-                        selectedItem={repository}
-                        items={repositories}
-                        selectItem={onRepositoryChange}
-                    />
+            {
+                isLoading ? (
+                    <Spinner animation="border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
+                ) : (
+                    repositories.length > 0 && (
+                        <ItemSelect
+                            selectedItem={repository}
+                            items={repositories}
+                            selectItem={(repository: GitHubRepository) =>
+                                onRepositoryChange(repository)
+                            }
+                        />
+                    )
                 )
-            )}
+                // TODO: Alert when the API is unavailable
+            }
         </Jumbotron>
     );
 };

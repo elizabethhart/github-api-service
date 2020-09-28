@@ -1,19 +1,49 @@
 @import "~bootstrap/scss/bootstrap";
 
-.container {
-    padding: 50px;
+body,
+#root {
+    height: 100vh;
 }
 
-.dropdown-menu {
-    height: 300px;
-    overflow-y: scroll;
-}
-
-.language-btn {
+.navbar .language-btn {
     border: 1px solid black;
 }
 
-.input-group-append,
-.list-group-item {
-    cursor: pointer;
+.container-fluid {
+    padding: 50px;
+    background: url("https://images.unsplash.com/photo-1508780709619-79562169bc64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2700&q=80");
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+
+    .dropdown-menu {
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+
+    .list-group {
+        max-height: 250px;
+        overflow-y: scroll;
+    }
+
+    .input-group-append,
+    .list-group-item {
+        cursor: pointer;
+    }
+
+    .repository {
+        h1 {
+            color: white;
+        }
+
+        .badge {
+            float: right;
+        }
+
+        .recharts-wrapper {
+            margin: auto;
+        }
+    }
 }
