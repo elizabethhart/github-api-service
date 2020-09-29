@@ -18,9 +18,14 @@ body,
     background-size: cover;
     height: 100%;
 
-    .dropdown-menu {
-        max-height: 300px;
-        overflow-y: scroll;
+    .jumbotron {
+        margin: auto;
+        max-width: 500px;
+
+        .dropdown-menu {
+            max-height: 300px;
+            overflow-y: scroll;
+        }
     }
 
     .list-group {

@@ -15,9 +15,7 @@ const Main: React.FC = () => {
         <Container fluid>
             <Search
                 repository={repository}
-                onRepositoryChange={(repository: GitHubRepository) => {
-                    setRepository(repository);
-                }}
+                onRepositoryChange={(repository: GitHubRepository) => setRepository(repository)}
                 clearSelection={() => setRepository(null)}
             />
             {repository && (

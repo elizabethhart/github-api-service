@@ -1,6 +1,17 @@
 # GitHub API Service
 
-React application for consuming the [GitHub REST API](https://docs.github.com/en/free-pro-team@latest/rest)
+React application for consuming the [GitHub REST API](https://docs.github.com/en/free-pro-team@latest/rest).
+
+Use this application to search for public repositories on GitHub.
+The dashboard provides a brief overview of the repository and it's current issues.
+
+Future features may include:
+
+-   tracking issue resolution
+-   tracking contributors
+-   version releases
+-   recent pull requests
+-   posting new issues to a project
 
 ## Getting Started
 
@@ -26,12 +37,15 @@ yarn test
 
 ## Translations
 
-Translation support for:
+Translation support via [react-i18next](https://react.i18next.com/) for:
 
 -   English (en)
 -   Swedish (sv)
 
-[react-i18next](https://react.i18next.com/)
+## Other Technologies
+
+-   [React Bootstrap](https://react-bootstrap.github.io/)
+-   [recharts](https://recharts.org/)
 
 ## Linting
 

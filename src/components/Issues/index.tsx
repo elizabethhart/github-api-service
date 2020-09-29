@@ -22,6 +22,7 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
                     const newIssues = response.data && response.data.length ? response.data : [];
                     setIssues(newIssues);
                     setIsLoading(false);
+                    // TODO: Alert when the API is unavailable
                 }
             );
         }
@@ -33,78 +34,75 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
     function buildChartData() {
         return [
             {
-                name: "open",
+                name: t("open"),
                 value: issues.filter((issue) => issue.state === "open").length,
                 fill: "#808080"
             },
             {
-                name: "closed",
+                name: t("closed"),
                 value: issues.filter((issue) => issue.state === "closed").length,
                 fill: "#000000"
             }
         ];
     }
 
-    function renderLabel(entry: any) {
+    function renderLabel(entry) {
         return entry.name;
     }
 
     return (
         <>
             <h1>{t("recent-issues")}</h1>
-            {
-                isLoading ? (
-                    <Spinner animation="border" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </Spinner>
-                ) : issues.length > 0 ? (
-                    <Row>
-                        <Col>
-                            <Card>
-                                <PieChart width={250} height={250}>
-                                    <Pie
-                                        data={buildChartData()}
-                                        cx="50%"
-                                        cy="50%"
-                                        outerRadius={50}
-                                        dataKey="value"
-                                        label={renderLabel}
+            {isLoading ? (
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            ) : issues.length > 0 ? (
+                <Row>
+                    <Col>
+                        <Card>
+                            <PieChart width={250} height={250}>
+                                <Pie
+                                    data={buildChartData()}
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius={50}
+                                    dataKey="value"
+                                    label={renderLabel}
+                                >
+                                    {buildChartData().map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                                    ))}
+                                </Pie>
+                            </PieChart>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <ListGroup>
+                            {issues.map((issue, index) => {
+                                return (
+                                    <ListGroup.Item
+                                        key={index}
+                                        onClick={() => window.open(issue.html_url)}
                                     >
-                                        {buildChartData().map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.fill} />
-                                        ))}
-                                    </Pie>
-                                </PieChart>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <ListGroup>
-                                {issues.map((issue, index) => {
-                                    return (
-                                        <ListGroup.Item
-                                            key={index}
-                                            onClick={() => window.open(issue.html_url)}
-                                        >
-                                            {issue.title}
-                                            {issue.labels.map((label, labelIndex) => {
-                                                // TODO: Enforce max labels per line
-                                                return (
-                                                    <Badge pill variant="dark" key={labelIndex}>
-                                                        {label.name}
-                                                    </Badge>
-                                                );
-                                            })}
-                                        </ListGroup.Item>
-                                    );
-                                })}
-                            </ListGroup>
-                        </Col>
-                    </Row>
-                ) : (
-                    <span>no open issues</span>
-                )
-                // TODO: Alert when the API is unavailable
-            }
+                                        {issue.title}
+                                        {issue.labels.map((label, labelIndex) => {
+                                            // TODO: Enforce max labels per line
+                                            return (
+                                                <Badge pill variant="dark" key={labelIndex}>
+                                                    {label.name}
+                                                </Badge>
+                                            );
+                                        })}
+                                    </ListGroup.Item>
+                                );
+                            })}
+                        </ListGroup>
+                    </Col>
+                </Row>
+            ) : (
+                <span>no open issues</span>
+            )}
         </>
     );
 };

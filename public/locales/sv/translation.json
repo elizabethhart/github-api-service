@@ -1,8 +1,10 @@
 {
+    "closed": "stängd",
     "contributors": "Bidragsgivare",
     "dashboard": "Webbplatsverktyg",
     "details": "Detaljer",
     "recent-issues": "Nyligen Problem",
+    "open": "öppna",
     "open-issues": "Öppet Problem",
     "pulls": "Dra förfrågningar",
     "releases": "Släpp",

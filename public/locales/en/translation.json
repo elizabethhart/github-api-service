@@ -1,8 +1,10 @@
 {
+    "closed": "closed",
     "contributors": "Contributors",
     "dashboard": "Dashboard",
     "details": "Details",
     "recent-issues": "Recent Issues",
+    "open": "open",
     "open-issues": "open issues",
     "pulls": "Pulls",
     "releases": "Releases",

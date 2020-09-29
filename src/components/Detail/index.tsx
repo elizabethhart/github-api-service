@@ -13,7 +13,7 @@ const Detail: React.FC<DetailProps> = ({ repository }) => {
     return (
         <>
             <h1>{t("details")}</h1>
-            <Card style={{ width: "18rem" }}>
+            <Card>
                 <Card.Body>
                     <Card.Title>{repository.name}</Card.Title>
                     <Card.Text>{repository.description}</Card.Text>
