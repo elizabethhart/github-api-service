@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Detail from "..";
 
@@ -22,9 +22,9 @@ describe("<Detail />", () => {
     };
 
     test("detail component renders repository content", () => {
-        const { getByText } = render(<Detail repository={mockRepository} />);
+        render(<Detail repository={mockRepository} />);
 
-        const title = getByText("react");
+        const title = screen.getByText("react");
 
         expect(title).toBeVisible();
     });

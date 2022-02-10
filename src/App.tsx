@@ -1,13 +1,12 @@
 import React from "react";
-import Header from "./components/Header";
+import Layout from "./components/Layout";
 import Main from "./components/Main";
 import "./App.scss";
 
 const App: React.FC = () => (
-    <>
-        <Header />
+    <Layout>
         <Main />
-    </>
+    </Layout>
 );
 
 export default App;

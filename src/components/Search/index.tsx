@@ -20,16 +20,17 @@ const Search: React.FC<SearchProps> = ({ repository, onRepositoryChange, clearSe
     const [repositories, setRepositories] = useState<GitHubRepository[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    function searchRepositories(searchString: string) {
-        setIsLoading(true);
-        getRepositories(searchString).then((response) => {
-            if (response.data && response.data.items && response.data.items.length) {
-                setRepositories(response.data.items);
-            }
+    const searchRepositories = async (searchString: string) => {
+        try {
+            setIsLoading(true);
+            const response = await getRepositories(searchString);
+            setRepositories(response.data?.items ?? []);
             setIsLoading(false);
+        } catch (error) {
             // TODO: Alert when the API is unavailable
-        });
-    }
+            setIsLoading(false);
+        }
+    };
 
     return (
         <Jumbotron>

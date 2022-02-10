@@ -27,10 +27,10 @@ const ItemSearch: React.FC<ItemSearchProps> = ({ onInputChange, clearSelection }
         };
     }, [searchString]);
 
-    function handleClear() {
+    const handleClear = () => {
         setSearchString("");
         clearSelection();
-    }
+    };
 
     return (
         <InputGroup className="mb-3">

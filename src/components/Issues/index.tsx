@@ -31,7 +31,7 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
     /**
      * TODO: Add data visualization for contributors over time
      */
-    function buildChartData() {
+    const buildChartData = () => {
         return [
             {
                 name: t("open"),
@@ -44,11 +44,7 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
                 fill: "#000000"
             }
         ];
-    }
-
-    function renderLabel(entry) {
-        return entry.name;
-    }
+    };
 
     return (
         <>
@@ -68,7 +64,7 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
                                     cy="50%"
                                     outerRadius={50}
                                     dataKey="value"
-                                    label={renderLabel}
+                                    label={(entry) => entry.name}
                                 >
                                     {buildChartData().map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={entry.fill} />
