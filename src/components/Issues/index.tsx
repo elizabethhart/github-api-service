@@ -15,18 +15,32 @@ const Issues: React.FC<IssuesProps> = ({ repository }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        if (repository) {
-            setIsLoading(true);
-            getIssues(repository.owner.login, repository.name, 100, "all", "created", "desc").then(
-                (response) => {
-                    const newIssues = response.data && response.data.length ? response.data : [];
-                    setIssues(newIssues);
-                    setIsLoading(false);
-                    // TODO: Alert when the API is unavailable
-                }
-            );
-        }
+        void refreshIssues();
     }, [repository]);
+
+    const refreshIssues = async () => {
+        try {
+            if (repository) {
+                const response = await getIssues(
+                    repository.owner.login,
+                    repository.name,
+                    100,
+                    "all",
+                    "created",
+                    "desc"
+                );
+                const newIssues = response.data && response.data.length ? response.data : [];
+                setIssues(newIssues);
+                setIsLoading(false);
+            } else {
+                setIssues([]);
+            }
+        } catch (error) {
+            setIssues([]);
+            setIsLoading(false);
+            console.log(error);
+        }
+    };
 
     /**
      * TODO: Add data visualization for contributors over time
